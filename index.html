@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BillionMind • Global App</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            font-family: Inter, sans-serif;
+            color: #FFD700;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .page {
+            padding: 20px;
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            padding: 25px 10px;
+            background: linear-gradient(to bottom, #000, #101010);
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        /* MENU INFERIOR */
+        .menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            display: flex;
+            background: #000;
+            border-top: 1px solid #333;
+        }
+
+        .menu button {
+            flex: 1;
+            background: none;
+            border: none;
+            color: #ccc;
+            font-size: 14px;
+            padding-top: 5px;
+        }
+
+        .menu button.active {
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .menu-icons {
+            display: block;
+            font-size: 22px;
+        }
+
+        /* CARDS */
+        .card {
+            background: #0a0a0a;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            margin-bottom: 18px;
+        }
+
+        .title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 18px;
+            margin: 8px 0;
+            font-size: 18px;
+            background: none;
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #FFD700;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        BILLIONMIND<br>
+        <span style="font-size:14px;">Acelerador de Riqueza com IA • 2025</span>
+    </div>
+
+    <!-- PÁGINAS -->
+    <!-- HOME -->
+    <div id="home" class="page">
+        <button class="btn" onclick="showPage('mentor')">Mentor IA (Chat)</button>
+        <button class="btn" onclick="showPage('tasks')">Tarefas Diárias</button>
+        <button class="btn" onclick="showPage('panel')">Painel Financeiro</button>
+        <button class="btn" onclick="showPage('pricing')">Planos & Assinatura</button>
+
+        <div class="card">
+            <div class="title">$47.2K</div>
+            Ganhos Totais
+        </div>
+
+        <div class="card">
+            <div class="title">12</div>
+            Produtos Criados
+        </div>
+
+        <div class="card">
+            <div class="title">89%</div>
+            Tarefas Concluídas
+        </div>
+
+        <div class="card">
+            <div class="title">PRO</div>
+            Plano Atual
+        </div>
+    </div>
+
+    <!-- CRIAR PRODUTO -->
+    <div id="create" class="page hidden">
+        <h2>Criar Produto Digital</h2>
+        <div class="card">Ferramentas para criação ainda serão conectadas.</div>
+        <button class="btn">Criar Agora</button>
+    </div>
+
+    <!-- TAREFAS -->
+    <div id="tasks" class="page hidden">
+        <h2>Tarefas Diárias de Renda</h2>
+        <div class="card">Nenhuma tarefa criada ainda.</div>
+    </div>
+
+    <!-- PAINEL -->
+    <div id="panel" class="page hidden">
+        <h2>Painel Financeiro</h2>
+        <div class="card">Gráficos e ganhos aqui futuramente.</div>
+    </div>
+
+    <!-- ESTRATÉGIAS -->
+    <div id="strategy" class="page hidden">
+        <h2>Estratégias de Renda</h2>
+        <div class="card">Conteúdo de estratégia será colocado aqui.</div>
+    </div>
+
+    <!-- MENTOR IA -->
+    <div id="mentor" class="page hidden">
+        <h2>Mentor IA</h2>
+        <div class="card">Chat inteligente será integrado.</div>
+    </div>
+
+    <!-- PLANOS -->
+    <div id="pricing" class="page hidden">
+        <h2>Planos & Assinatura</h2>
+        <div class="card">Planos e preços aparecerão aqui.</div>
+    </div>
+
+    <!-- MENU INFERIOR -->
+    <div class="menu">
+        <button id="btn-home" class="active" onclick="showPage('home')">
+            <span class="menu-icons">🏠</span>Home
+        </button>
+        <button onclick="showPage('create')">
+            <span class="menu-icons">📦</span>Criar
+        </button>
+        <button onclick="showPage('tasks')">
+            <span class="menu-icons">📝</span>Tarefas
+        </button>
+        <button onclick="showPage('panel')">
+            <span class="menu-icons">📊</span>Painel
+        </button>
+    </div>
+
+    <script>
+        function showPage(page) {
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            document.getElementById(page).classList.remove('hidden');
+
+            document.querySelectorAll('.menu button').forEach(btn => btn.classList.remove('active'));
+            if (document.getElementById("btn-" + page)) {
+                document.getElementById("btn-" + page).classList.add("active");
+            }
+        }
+    </script>
+
+</body>
+</html>
