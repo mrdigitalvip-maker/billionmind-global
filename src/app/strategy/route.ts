@@ -1,31 +1,59 @@
 import { NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const { prompt } = await req.json();
 
-    const strategy = {
-      id: crypto.randomUUID(),
-      niche: body.niche || "não informado",
-      platform: body.platform || "não informado",
-      goal: body.goal || "não informado",
-      created_at: new Date().toISOString(),
-    };
+    if (!prompt) {
+      return NextResponse.json(
+        { error: "Você precisa enviar um prompt." },
+        { status: 400 }
+      );
+    }
 
-    return NextResponse.json(
-      {
-        success: true,
-        message: "Estratégia criada com sucesso!",
-        data: strategy,
-      },
-      { status: 200 }
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
     );
-  } catch (error) {
-    return NextResponse.json(
+
+    const aiResponse = await fetch(
+      "https://api.x.ai/v1/chat/completions",
       {
-        success: false,
-        message: "Erro ao criar estratégia",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + process.env.GROK_API_KEY,
+        },
+        body: JSON.stringify({
+          model: "grok-beta",
+          messages: [
+            {
+              role: "user",
+              content: `Crie uma estratégia de ganho poderosa, direta e lucrativa com base em: ${prompt}`,
+            },
+          ],
+        }),
+      }
+    );
+
+    const json = await aiResponse.json();
+    const result =
+      json?.choices?.[0]?.message?.content ||
+      "Não foi possível gerar a estratégia.";
+
+    await supabase.from("strategies").insert([
+      {
+        title: prompt,
+        result,
       },
+    ]);
+
+    return NextResponse.json({ result });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: "Erro interno ao criar estratégia." },
       { status: 500 }
     );
   }
