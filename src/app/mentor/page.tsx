@@ -1,128 +1,213 @@
 "use client";
-import { useState } from "react";
 
-export default function MentorPage() {
-  const [messages, setMessages] = useState([
-    { role: "assistant", content: "Sou seu MENTOR BILLIONMIND. O que quer criar hoje?" }
-  ]);
+import { useState, useEffect, useRef } from "react";
 
+export default function Mentor() {
+  const [messages, setMessages] = useState<any[]>([]);
   const [input, setInput] = useState("");
-  const [provider, setProvider] = useState("openai");
-  const [loading, setLoading] = useState(false);
+  const bottomRef = useRef<HTMLDivElement>(null);
 
+  // Carregar histórico salvo
+  useEffect(() => {
+    const saved = localStorage.getItem("bm_chat_history");
+    if (saved) setMessages(JSON.parse(saved));
+  }, []);
+
+  // Auto-scroll
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  // Salvar histórico
+  function saveHistory(updated: any[]) {
+    localStorage.setItem("bm_chat_history", JSON.stringify(updated));
+  }
+
+  // Enviar mensagem
   async function sendMessage() {
     if (!input.trim()) return;
 
-    const newMessages = [...messages, { role: "user", content: input }];
-    setMessages(newMessages);
-    setLoading(true);
+    const userMessage = { role: "user", content: input };
+    const updatedMessages = [...messages, userMessage];
+    setMessages(updatedMessages);
+    saveHistory(updatedMessages);
 
-    const response = await fetch("/api/ai", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        prompt: `
-Você é o MENTOR BILLIONMIND — um orientador de alta performance.
-Responda no estilo:
-
-• LUXO DOURADO
-• Rápido
-• Direto
-• Estratégico
-• Visão de lucro
-• Mentalidade milionária
-
-Pergunta do usuário: ${input}
-`,
-        provider,
-      }),
-    });
-
-    const { result } = await response.json();
-
-    setMessages([...newMessages, { role: "assistant", content: result }]);
     setInput("");
-    setLoading(false);
+
+    // 🔥 Mensagem de carregamento
+    const loadingMessage = {
+      role: "assistant",
+      content: "Digitando...",
+      loading: true,
+    };
+    setMessages((m) => [...m, loadingMessage]);
+
+    // Escolher modelo (OpenAI por padrão)
+    const response = await callAI(updatedMessages);
+
+    // Remover "digitando"
+    const withoutLoading = updatedMessages;
+    setMessages([...withoutLoading, { role: "assistant", content: response }]);
+    saveHistory([...withoutLoading, { role: "assistant", content: response }]);
+  }
+
+  // 🔥 Função central para chamar OpenAI / Gemini / Grok
+  async function callAI(history: any[]) {
+    try {
+      const systemPrompt =
+        "Você é o mentor oficial do BillionMind AI. Suas respostas são diretas, estratégicas e orientadas a lucro.";
+
+      const formattedHistory = history.map((m) => ({
+        role: m.role,
+        content: m.content,
+      }));
+
+      // Modelo OpenAI
+      const res = await fetch("/api/mentor", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [
+            { role: "system", content: systemPrompt },
+            ...formattedHistory,
+          ],
+        }),
+      });
+
+      const data = await res.json();
+      return data.reply || "Erro ao gerar resposta.";
+    } catch (err) {
+      return "Erro ao conectar à IA.";
+    }
   }
 
   return (
-    <div style={{ padding: "20px", height: "100vh", display: "flex", flexDirection: "column" }}>
-      <h1 style={{ color: "#ffd700", marginBottom: "20px" }}>AI Mentor</h1>
-
-      <select
-        value={provider}
-        onChange={(e) => setProvider(e.target.value)}
-        style={{
-          padding: "10px",
-          borderRadius: "10px",
-          marginBottom: "14px",
-          width: "100%",
-        }}
-      >
-        <option value="openai">OpenAI GPT</option>
-        <option value="grok">Grok XAI</option>
-        <option value="gemini">Google Gemini</option>
-      </select>
-
+    <div
+      style={{
+        padding: "20px",
+        paddingTop: "110px",
+        minHeight: "100vh",
+        background: "radial-gradient(circle at 50% 50%, #001a22, #000)",
+        color: "#fff",
+      }}
+    >
+      {/* Cabeçalho */}
       <div
         style={{
-          flex: 1,
-          overflowY: "auto",
-          background: "#111",
-          borderRadius: "12px",
-          padding: "14px",
-          border: "1px solid #333",
-          marginBottom: "14px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "12px",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          padding: "20px",
+          background: "rgba(0,0,0,0.7)",
+          backdropFilter: "blur(12px)",
+          borderBottom: "1px solid rgba(0,255,157,0.3)",
+          zIndex: 999,
+          textAlign: "center",
         }}
       >
+        <h1
+          style={{
+            fontFamily: "Orbitron",
+            fontSize: "26px",
+            background: "linear-gradient(90deg, #00ff9d, #00d0ff)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
+          BillionMind Mentor
+        </h1>
+        <p style={{ fontSize: "12px", opacity: 0.7 }}>
+          Sua IA especializada em dinheiro, disciplina e estratégia.
+        </p>
+      </div>
+
+      {/* MENSAGENS */}
+      <div style={{ marginBottom: "100px" }}>
         {messages.map((m, i) => (
           <div
             key={i}
             style={{
-              alignSelf: m.role === "user" ? "flex-end" : "flex-start",
-              background: m.role === "user" ? "#ffd700" : "#222",
-              color: m.role === "user" ? "#000" : "#fff",
-              padding: "10px 14px",
-              borderRadius: "12px",
-              maxWidth: "80%",
-              whiteSpace: "pre-wrap",
+              marginBottom: "16px",
+              display: "flex",
+              justifyContent: m.role === "user" ? "flex-end" : "flex-start",
             }}
           >
-            {m.content}
+            <div
+              style={{
+                maxWidth: "75%",
+                padding: "12px 16px",
+                borderRadius: "16px",
+                background:
+                  m.role === "user"
+                    ? "rgba(0,255,157,0.15)"
+                    : "rgba(0,208,255,0.15)",
+                border:
+                  m.role === "user"
+                    ? "1px solid rgba(0,255,157,0.4)"
+                    : "1px solid rgba(0,208,255,0.4)",
+                backdropFilter: "blur(8px)",
+              }}
+            >
+              {m.content}
+            </div>
           </div>
         ))}
+        <div ref={bottomRef}></div>
       </div>
 
-      <div style={{ display: "flex", gap: "12px" }}>
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Pergunte algo ao Mentor…"
+      {/* INPUT */}
+      <div
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          padding: "16px",
+          background: "rgba(0,0,0,0.85)",
+          backdropFilter: "blur(14px)",
+          borderTop: "1px solid rgba(0,255,157,0.3)",
+        }}
+      >
+        <div
           style={{
-            flex: 1,
-            padding: "12px",
-            borderRadius: "10px",
+            display: "flex",
             background: "#111",
-            color: "#fff",
-            border: "1px solid #444",
-          }}
-        />
-        <button
-          onClick={sendMessage}
-          disabled={loading}
-          style={{
-            background: "#ffd700",
-            color: "#000",
-            padding: "12px 18px",
-            borderRadius: "10px",
-            fontWeight: "bold",
+            borderRadius: "50px",
+            padding: "10px",
+            border: "1px solid rgba(0,255,157,0.3)",
           }}
         >
-          {loading ? "..." : "Enviar"}
-        </button>
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Fale comigo…"
+            style={{
+              flex: 1,
+              background: "transparent",
+              border: "none",
+              outline: "none",
+              color: "#fff",
+              paddingLeft: "10px",
+            }}
+          />
+          <button
+            onClick={sendMessage}
+            style={{
+              background: "var(--neon-green)",
+              borderRadius: "50%",
+              width: "46px",
+              height: "46px",
+              border: "none",
+              color: "#000",
+              fontWeight: "900",
+              fontSize: "14px",
+              cursor: "pointer",
+            }}
+          >
+            ➤
+          </button>
+        </div>
       </div>
     </div>
   );
