@@ -1,69 +1,139 @@
-export default function StrategyPage() {
-  return (
-    <div style={{ padding: "30px", color: "white", fontFamily: "Inter" }}>
-      <h1 style={{ fontSize: "32px", marginBottom: "10px" }}>Criar Estratégia de Ganho</h1>
-      <p style={{ opacity: 0.8 }}>
-        Gere estratégias inteligentes e personalizadas para lucrar rápido usando IA.
-      </p>
+"use client";
+import { useState } from "react";
 
-      <div
+export default function StrategyPage() {
+  const [niche, setNiche] = useState("");
+  const [provider, setProvider] = useState("openai");
+  const [result, setResult] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function generateStrategy() {
+    if (!niche.trim()) return;
+
+    setLoading(true);
+    setResult("");
+
+    const response = await fetch("/api/ai", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        prompt: `
+Crie uma estratégia de ganho altamente lucrativa para o nicho: ${niche}
+
+Gere:
+
+1. **Identidade da marca**
+   - Nome forte
+   - Tom de voz
+   - Persona dominante (Alpha, Luxo, Nova Era etc)
+   - Diferencial único
+
+2. **Estratégia de conteúdo**
+   - 10 ideias de posts virais
+   - 10 Reels/TikTok virais
+   - 5 chamadas para gravação de vídeo
+   - 5 manchetes chamativas
+
+3. **Plano de monetização**
+   - Produto principal
+   - Mini-ofertas
+   - Upsell
+   - Programa de assinatura mensal
+   - Ideias de bônus
+
+4. **Funil completo**
+   - Atração
+   - Aquecimento
+   - Conversão
+   - Escala
+   - Copy completa do funil
+
+5. **Automação**
+   - Sequência de mensagens
+   - Respostas prontas
+   - Scripts de persuasão
+   - Gatilhos mentais aplicados
+
+6. **Resumo final estilo consultoria premium**
+
+IMPORTANTE: Escreva tudo com estilo LUXO PREMIUM DOURADO, similar a grandes marcas de elite digital.
+`,
+        provider,
+      }),
+    });
+
+    const data = await response.json();
+    setResult(data.result);
+    setLoading(false);
+  }
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1 style={{ color: "#ffd700", marginBottom: "20px" }}>
+        Criar Estratégia de Ganho
+      </h1>
+
+      <select
+        value={provider}
+        onChange={(e) => setProvider(e.target.value)}
         style={{
-          marginTop: "30px",
-          background: "rgba(255,215,0,0.15)",
-          border: "1px solid gold",
-          padding: "20px",
-          borderRadius: "16px",
+          padding: "10px",
+          borderRadius: "10px",
+          marginBottom: "20px",
+          width: "100%",
         }}
       >
-        <h3 style={{ color: "gold" }}>Explique a situação</h3>
+        <option value="openai">OpenAI GPT</option>
+        <option value="grok">Grok XAI</option>
+        <option value="gemini">Google Gemini</option>
+      </select>
 
-        <textarea
-          placeholder="Ex: Tenho pouco tempo, quero ganhar dinheiro rápido, o que posso fazer?"
-          style={{
-            width: "100%",
-            height: "140px",
-            padding: "12px",
-            borderRadius: "10px",
-            marginTop: "10px",
-            background: "black",
-            color: "white",
-            border: "1px solid gold",
-          }}
-        ></textarea>
+      <textarea
+        placeholder="Digite seu nicho ou objetivo…"
+        value={niche}
+        onChange={(e) => setNiche(e.target.value)}
+        style={{
+          width: "100%",
+          height: "120px",
+          padding: "12px",
+          borderRadius: "12px",
+          background: "#111",
+          color: "#fff",
+          border: "1px solid #444",
+          marginBottom: "20px",
+        }}
+      />
 
-        <button
+      <button
+        onClick={generateStrategy}
+        disabled={loading}
+        style={{
+          padding: "14px",
+          width: "100%",
+          borderRadius: "12px",
+          background: "#ffd700",
+          color: "#000",
+          fontWeight: "bold",
+          fontSize: "16px",
+        }}
+      >
+        {loading ? "Gerando Estratégia..." : "Criar Estratégia de Ganho"}
+      </button>
+
+      {result && (
+        <div
           style={{
             marginTop: "20px",
-            width: "100%",
-            padding: "16px",
-            fontSize: "16px",
-            fontWeight: "bold",
-            background: "gold",
-            color: "black",
-            borderRadius: "50px",
-            cursor: "pointer",
-            border: "none",
+            padding: "18px",
+            background: "#222",
+            borderRadius: "12px",
+            border: "1px solid #555",
+            whiteSpace: "pre-wrap",
           }}
         >
-          GERAR ESTRATÉGIA
-        </button>
-      </div>
-
-      <div
-        style={{
-          marginTop: "35px",
-          padding: "20px",
-          borderRadius: "16px",
-          background: "rgba(255,215,0,0.1)",
-          border: "1px solid rgba(255,215,0,0.3)",
-        }}
-      >
-        <h3 style={{ color: "gold" }}>Estratégia Recomendada</h3>
-        <p style={{ opacity: 0.8, marginTop: "8px" }}>
-          O resultado da IA aparecerá aqui.  
-          Você poderá copiar, salvar e aplicar imediatamente.
-        </p>
-      </div>
+          {result}
+        </div>
+      )}
     </div>
   );
 }
