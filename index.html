@@ -1,201 +1,457 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BillionMind • Global App</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Método da Mente Lucrativa 2026+</title>
 
-    <style>
-        body {
-            margin: 0;
-            background: #000;
-            font-family: Inter, sans-serif;
-            color: #FFD700;
-        }
+<!-- Fonte Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-        .hidden {
-            display: none;
-        }
+<style>
+  :root {
+    --bg: #000000;
+    --gold: #f4c86c;
+    --gold-soft: rgba(244, 200, 108, 0.16);
+    --white: #ffffff;
+    --text-soft: #c2c3d6;
+    --radius: 18px;
+  }
 
-        .page {
-            padding: 20px;
-        }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+  }
 
-        /* HEADER */
-        .header {
-            text-align: center;
-            padding: 25px 10px;
-            background: linear-gradient(to bottom, #000, #101010);
-            font-size: 28px;
-            font-weight: bold;
-        }
+  body {
+    background: var(--bg);
+    color: var(--white);
+    overflow-x: hidden;
+  }
 
-        /* MENU INFERIOR */
-        .menu {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 70px;
-            display: flex;
-            background: #000;
-            border-top: 1px solid #333;
-        }
+  /* HEADER */
+  .header {
+    padding: 80px 20px 70px;
+    text-align: center;
+    max-width: 900px;
+    margin: auto;
+  }
 
-        .menu button {
-            flex: 1;
-            background: none;
-            border: none;
-            color: #ccc;
-            font-size: 14px;
-            padding-top: 5px;
-        }
+  .header-title {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
 
-        .menu button.active {
-            color: #FFD700;
-            font-weight: bold;
-        }
+  .header-sub {
+    font-size: 17px;
+    color: var(--text-soft);
+    max-width: 620px;
+    margin: 0 auto 24px;
+    line-height: 1.5;
+  }
 
-        .menu-icons {
-            display: block;
-            font-size: 22px;
-        }
+  .header-btn {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 14px 26px;
+    background: linear-gradient(90deg, var(--gold), #d6a849);
+    color: #000;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s;
+  }
 
-        /* CARDS */
-        .card {
-            background: #0a0a0a;
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid #333;
-            margin-bottom: 18px;
-        }
+  .header-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 24px rgba(244,200,108,0.5);
+  }
 
-        .title {
-            font-size: 20px;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
+  /* SECTION WRAPPER */
+  .section {
+    padding: 60px 20px;
+    max-width: 1100px;
+    margin: auto;
+  }
 
-        .btn {
-            width: 100%;
-            padding: 18px;
-            margin: 8px 0;
-            font-size: 18px;
-            background: none;
-            border: 2px solid #FFD700;
-            color: #FFD700;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+  .sec-title {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
 
-        .btn:hover {
-            background: #FFD700;
-            color: #000;
-        }
-    </style>
+  .sec-sub {
+    text-align: center;
+    font-size: 15px;
+    color: var(--text-soft);
+    margin-bottom: 30px;
+  }
+
+  /* FEATURES */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+
+  .feature {
+    padding: 20px;
+    background: #0a0a0a;
+    border: 1px solid var(--gold-soft);
+    border-radius: var(--radius);
+  }
+
+  .feature h3 {
+    font-size: 17px;
+    margin-bottom: 6px;
+  }
+
+  .feature p {
+    color: var(--text-soft);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+</style>
 </head>
 
 <body>
 
-    <div class="header">
-        BILLIONMIND<br>
-        <span style="font-size:14px;">Acelerador de Riqueza com IA • 2025</span>
+<!-- HEADER -->
+<header class="header">
+  <h1 class="header-title">Método da Mente Lucrativa 2026+</h1>
+
+  <p class="header-sub">
+    A nova era começa na mente. Um método direto e premium para você construir sua estrutura digital,
+    ativar disciplina e entrar em 2026 no controle do seu próprio caminho.
+  </p>
+
+  <a href="#plans" class="header-btn">Liberar meu acesso</a>
+</header>
+
+<!-- SECTION: O QUE VOCÊ VAI DOMINAR -->
+<section class="section">
+  <h2 class="sec-title">O que você vai dominar</h2>
+  <p class="sec-sub">From mindset to execution — everything aligned for your next level.</p>
+
+  <div class="grid">
+    <div class="feature">
+      <h3>Estrutura de Produtos Digitais</h3>
+      <p>Como criar produtos, planos e bases profissionais mesmo começando do zero.</p>
+    </div>
+    <div class="feature">
+      <h3>Pensamento 2026+</h3>
+      <p>Os códigos mentais que colocam você mentalmente à frente de 90% das pessoas.</p>
+    </div>
+    <div class="feature">
+      <h3>Fluxo Técnico Completo</h3>
+      <p>Página, estrutura, assinaturas, base de dados, deploy — explicado de forma simples.</p>
+    </div>
+    <div class="feature">
+      <h3>Criação de Apps com IA</h3>
+      <p>Use IA para criar projetos reais, funcionais e prontos para o mundo.</p>
+    </div>
+    <div class="feature">
+      <h3>Mentalidade Lucrativa</h3>
+      <p>A mentalidade que transforma foco em movimento, e movimento em resultado.</p>
+    </div>
+    <div class="feature">
+      <h3>Sistema de Disciplina</h3>
+      <p>Como manter consistência e evolução diária sem depender de motivação.</p>
+    </div>
+  </div>
+</section>
+<!-- SECTION: PLANOS -->
+<section class="section" id="plans">
+  <h2 class="sec-title">Escolha seu acesso</h2>
+  <p class="sec-sub">Three paths. One evolution.</p>
+
+<style>
+  .plans {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .plan {
+    background: #0a0a0a;
+    border: 1px solid var(--gold-soft);
+    padding: 22px;
+    border-radius: var(--radius);
+    text-align: left;
+    position: relative;
+  }
+
+  .plan.featured {
+    border: 1px solid var(--gold);
+    box-shadow: 0 0 26px rgba(244,200,108,0.25);
+  }
+
+  .plan h3 {
+    color: var(--gold);
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .plan-price {
+    font-size: 32px;
+    color: var(--gold);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .plan p {
+    color: var(--text-soft);
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .plan .urgency {
+    color: #ff6666;
+    font-size: 13px;
+    margin-top: 10px;
+  }
+
+  .plan-btn {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    text-align: center;
+    background: linear-gradient(90deg, var(--gold), #d6a849);
+    color: #000;
+    font-weight: 700;
+    border-radius: 999px;
+    margin-top: 16px;
+    transition: 0.2s;
+  }
+
+  .plan-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 18px rgba(244,200,108,0.35);
+  }
+
+  .plan-timer {
+    margin-top: 12px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    background: rgba(244,200,108,0.08);
+    border: 1px solid rgba(244,200,108,0.25);
+    font-size: 14px;
+    color: var(--gold);
+    display: inline-block;
+  }
+</style>
+
+<div class="plans">
+
+  <!-- PLANO PREMIUM -->
+  <div class="plan featured">
+    <h3>Acesso Total · Premium</h3>
+    <div class="plan-price">R$ 49,98</div>
+    <p>✔ Conteúdo completo (mentalidade + estrutura + execução)</p>
+    <p>✔ Modelos profissionais e referências</p>
+    <p>✔ Visão de longo prazo</p>
+
+    <div class="urgency">Vagas limitadas — ciclo pode encerrar a qualquer momento.</div>
+
+    <div class="plan-timer">
+      Oferta expira em:
+      <span id="timer-premium"></span>
     </div>
 
-    <!-- PÁGINAS -->
-    <!-- HOME -->
-    <div id="home" class="page">
-        <button class="btn" onclick="showPage('mentor')">Mentor IA (Chat)</button>
-        <button class="btn" onclick="showPage('tasks')">Tarefas Diárias</button>
-        <button class="btn" onclick="showPage('panel')">Painel Financeiro</button>
-        <button class="btn" onclick="showPage('pricing')">Planos & Assinatura</button>
+    <a href="https://pay.cakto.com.br/4ehcq2y_672236" target="_blank" class="plan-btn">
+      Liberar meu acesso Premium
+    </a>
+  </div>
 
-        <div class="card">
-            <div class="title">$47.2K</div>
-            Ganhos Totais
-        </div>
+  <!-- PLANO MÉDIO -->
+  <div class="plan">
+    <h3>Versão Acessível · Completa</h3>
+    <div class="plan-price">R$ 39,98</div>
+    <p>✔ Conteúdo principal completo</p>
+    <p>✔ Estratégia + técnica essencial</p>
 
-        <div class="card">
-            <div class="title">12</div>
-            Produtos Criados
-        </div>
+    <div class="urgency">Disponível por tempo limitado.</div>
 
-        <div class="card">
-            <div class="title">89%</div>
-            Tarefas Concluídas
-        </div>
-
-        <div class="card">
-            <div class="title">PRO</div>
-            Plano Atual
-        </div>
+    <div class="plan-timer">
+      Oferta ativa por:
+      <span id="timer-medio"></span>
     </div>
 
-    <!-- CRIAR PRODUTO -->
-    <div id="create" class="page hidden">
-        <h2>Criar Produto Digital</h2>
-        <div class="card">Ferramentas para criação ainda serão conectadas.</div>
-        <button class="btn">Criar Agora</button>
+    <a href="https://pay.cakto.com.br/v8k65mm_672262" target="_blank" class="plan-btn">
+      Liberar meu acesso
+    </a>
+  </div>
+
+  <!-- PLANO BAIXO -->
+  <div class="plan">
+    <h3>Opção Lite · Essencial</h3>
+    <div class="plan-price">R$ 29,99</div>
+    <p>✔ Começo inteligente</p>
+    <p>✔ Mentalidade + base inicial</p>
+
+    <div class="urgency">Enquanto houver vagas.</div>
+
+    <div class="plan-timer">
+      Tempo restante:
+      <span id="timer-lite"></span>
     </div>
 
-    <!-- TAREFAS -->
-    <div id="tasks" class="page hidden">
-        <h2>Tarefas Diárias de Renda</h2>
-        <div class="card">Nenhuma tarefa criada ainda.</div>
-    </div>
+    <a href="https://pay.cakto.com.br/3eprkrv_672949" target="_blank" class="plan-btn">
+      Garantir acesso Lite
+    </a>
+  </div>
 
-    <!-- PAINEL -->
-    <div id="panel" class="page hidden">
-        <h2>Painel Financeiro</h2>
-        <div class="card">Gráficos e ganhos aqui futuramente.</div>
-    </div>
+</div>
+</section>
 
-    <!-- ESTRATÉGIAS -->
-    <div id="strategy" class="page hidden">
-        <h2>Estratégias de Renda</h2>
-        <div class="card">Conteúdo de estratégia será colocado aqui.</div>
-    </div>
 
-    <!-- MENTOR IA -->
-    <div id="mentor" class="page hidden">
-        <h2>Mentor IA</h2>
-        <div class="card">Chat inteligente será integrado.</div>
-    </div>
+<!-- SECTION: BONUS -->
+<section class="section">
+  <h2 class="sec-title">Bônus exclusivos deste ciclo</h2>
+  <p class="sec-sub">Extra value for this wave only.</p>
 
-    <!-- PLANOS -->
-    <div id="pricing" class="page hidden">
-        <h2>Planos & Assinatura</h2>
-        <div class="card">Planos e preços aparecerão aqui.</div>
-    </div>
+<style>
+  .bonus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
 
-    <!-- MENU INFERIOR -->
-    <div class="menu">
-        <button id="btn-home" class="active" onclick="showPage('home')">
-            <span class="menu-icons">🏠</span>Home
-        </button>
-        <button onclick="showPage('create')">
-            <span class="menu-icons">📦</span>Criar
-        </button>
-        <button onclick="showPage('tasks')">
-            <span class="menu-icons">📝</span>Tarefas
-        </button>
-        <button onclick="showPage('panel')">
-            <span class="menu-icons">📊</span>Painel
-        </button>
-    </div>
+  .bonus {
+    background: #0a0a0a;
+    padding: 18px;
+    border-radius: var(--radius);
+    border: 1px solid var(--gold-soft);
+  }
 
-    <script>
-        function showPage(page) {
-            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-            document.getElementById(page).classList.remove('hidden');
+  .bonus h3 {
+    color: var(--gold);
+    font-size: 17px;
+    margin-bottom: 6px;
+  }
 
-            document.querySelectorAll('.menu button').forEach(btn => btn.classList.remove('active'));
-            if (document.getElementById("btn-" + page)) {
-                document.getElementById("btn-" + page).classList.add("active");
-            }
-        }
-    </script>
+  .bonus small {
+    color: var(--text-soft);
+    font-size: 13px;
+  }
+
+  .bonus p {
+    color: var(--text-soft);
+    margin-top: 6px;
+    font-size: 14px;
+  }
+</style>
+
+<div class="bonus-grid">
+  <div class="bonus">
+    <h3>🎁 Biblioteca de Scripts IA</h3>
+    <small>Valor: R$ 97 — recebido gratuitamente</small>
+    <p>Prompts estratégicos para acelerar sua criação.</p>
+  </div>
+
+  <div class="bonus">
+    <h3>🎁 Checklist Mindset 2026</h3>
+    <small>Valor: R$ 67 — incluso gratuitamente</small>
+    <p>O sistema de disciplina para evolução diária real.</p>
+  </div>
+
+  <div class="bonus">
+    <h3>🎁 Pack de Design Profissional</h3>
+    <small>Valor: R$ 147 — incluso gratuitamente</small>
+    <p>Modelos prontos para páginas e designs premium.</p>
+  </div>
+</div>
+</section>
+
+
+<!-- SECTION: FINAL CTA -->
+<section class="section">
+  <div style="text-align:center; max-width:700px; margin:auto;">
+    <h2 class="sec-title">Você sabe que pode mais</h2>
+    <p class="sec-sub">
+      Nothing changes until you move.  
+      Escolha seu acesso e comece agora sua nova versão.
+    </p>
+
+    <a href="#plans" class="header-btn">Liberar meu acesso</a>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer style="padding:20px; text-align:center; color:var(--text-soft); font-size:13px;">
+  Método da Mente Lucrativa 2026+ — BillionMind · Todos os direitos reservados.
+</footer>
+
+
+<!-- JAVASCRIPT: CRONÔMETRO REAL -->
+<script>
+  function getDeadline() {
+    const saved = localStorage.getItem("bm_deadline");
+    if (saved) return parseInt(saved);
+
+    const now = new Date().getTime();
+    const deadline = now + 24 * 60 * 60 * 1000; // 24h reais
+    localStorage.setItem("bm_deadline", deadline);
+    return deadline;
+  }
+
+  function updateTimer(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const now = new Date().getTime();
+    const distance = getDeadline() - now;
+
+    if (distance <= 0) {
+      el.innerHTML = "Expirado";
+      return;
+    }
+
+    const h = Math.floor(distance / (1000 * 60 * 60));
+    const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+    el.innerHTML =
+      h.toString().padStart(2, "0") + "h " +
+      m.toString().padStart(2, "0") + "m " +
+      s.toString().padStart(2, "0") + "s";
+  }
+
+  setInterval(() => {
+    updateTimer("timer-premium");
+    updateTimer("timer-medio");
+    updateTimer("timer-lite");
+  }, 1000);
+</script>
+
+
+<!-- JAVASCRIPT: IDIOMA AUTOMÁTICO -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const lang = navigator.language || navigator.userLanguage;
+
+    if (!lang.startsWith("pt")) {
+      document.body.classList.add("en");
+
+      // Aqui você poderia trocar textos automaticamente
+      // Se quiser, posso gerar uma versão EN completa também.
+    }
+  });
+</script>
 
 </body>
 </html>
