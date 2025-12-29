@@ -257,3 +257,66 @@
   </script>
 </body>
 </html>
+<!-- SOCIAL PROOF CAROUSEL -->
+<style>
+  .social-proof-carousel {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin: 40px auto;
+    background: #000;
+    padding: 20px 0;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 16px;
+    animation: scroll 40s linear infinite;
+  }
+
+  .carousel-track img {
+    height: 320px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .carousel-track img {
+      height: 240px;
+    }
+  }
+</style>
+
+<div class="social-proof-carousel">
+  <div class="carousel-track">
+    <!-- IMAGES (duplicated for smooth loop) -->
+    <img src="https://github.com/user-attachments/assets/15de3c5c-7d81-4c19-98dd-add5111257b2">
+    <img src="https://github.com/user-attachments/assets/307d0280-b238-4f28-8205-41640ed9ff4a">
+    <img src="https://github.com/user-attachments/assets/81148523-7e97-42dc-a921-7f60a1294b5f">
+    <img src="https://github.com/user-attachments/assets/ee06909d-81be-4f34-9dc6-9385f7a15469">
+    <img src="https://github.com/user-attachments/assets/c99f7427-ae73-40bb-8eab-d1de0bee9ab7">
+    <img src="https://github.com/user-attachments/assets/2708cfb6-1e5f-4b98-8a57-ffee9c09fa56">
+    <img src="https://github.com/user-attachments/assets/acc4865a-c47f-4b02-b8df-24d6efd005ce">
+
+    <!-- DUPLICATE FOR LOOP -->
+    <img src="https://github.com/user-attachments/assets/15de3c5c-7d81-4c19-98dd-add5111257b2">
+    <img src="https://github.com/user-attachments/assets/307d0280-b238-4f28-8205-41640ed9ff4a">
+    <img src="https://github.com/user-attachments/assets/81148523-7e97-42dc-a921-7f60a1294b5f">
+    <img src="https://github.com/user-attachments/assets/ee06909d-81be-4f34-9dc6-9385f7a15469">
+    <img src="https://github.com/user-attachments/assets/c99f7427-ae73-40bb-8eab-d1de0bee9ab7">
+    <img src="https://github.com/user-attachments/assets/2708cfb6-1e5f-4b98-8a57-ffee9c09fa56">
+    <img src="https://github.com/user-attachments/assets/acc4865a-c47f-4b02-b8df-24d6efd005ce">
+  </div>
+</div>
