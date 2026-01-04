@@ -1,322 +1,212 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Viral Luxury Videos 4K Pack</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    :root {
-      --bg-main: #020716;
-      --bg-card: #050b1f;
-      --bg-card-soft: #081126;
-      --accent: #00c8ff;
-      --accent-soft: rgba(0, 200, 255, 0.15);
-      --gold: #f7c86a;
-      --text-main: #f5f7ff;
-      --text-soft: #b1b7d6;
-      --danger: #ff4b81;
-      --radius-xl: 18px;
-      --radius-lg: 14px;
-      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
-      --max-width: 980px;
-      --border-glow: 1px solid rgba(0, 200, 255, 0.45);
-      --glass: rgba(11, 20, 46, 0.75);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif; background: radial-gradient(circle at top, #00008b 0, #001f3f 45%, #000 90%); color: var(--text-main); min-height: 100vh; overflow-x: hidden; }
-    .cyber-bg { position: fixed; inset: 0; overflow: hidden; z-index: -1; background: radial-gradient(circle at top, #071535 0, #000 70%); }
-    .cyber-bg span { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: rgba(0, 200, 255, 0.8); box-shadow: 0 0 10px rgba(0, 200, 255, 0.7), 0 0 25px rgba(0, 200, 255, 0.4); animation: floatParticle 18s linear infinite; }
-    .cyber-bg span:nth-child(odd) { background: rgba(247, 200, 106, 0.9); box-shadow: 0 0 10px rgba(247, 200, 106, 0.8), 0 0 26px rgba(247, 200, 106, 0.4); }
-    @keyframes floatParticle { 0% { transform: translate3d(0, 0, 0) scale(0.9); opacity: 0; } 10% { opacity: 1; } 50% { transform: translate3d(120px, -220px, 0) scale(1.1); } 100% { transform: translate3d(-220px, -520px, 0) scale(0.9); opacity: 0; } }
-    .page { max-width: var(--max-width); margin: 32px auto 64px; padding: 0 16px 40px; position: relative; }
-    .timer-section { text-align: center; margin-bottom: 32px; }
-    .timer-above { font-size: 1.2rem; color: var(--danger); margin-bottom: 8px; animation: pulse 2s infinite; }
-    .timer { font-size: 2.5rem; font-weight: 700; color: var(--gold); letter-spacing: 0.1em; animation: flash 1s infinite alternate; }
-    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
-    @keyframes flash { 0% { color: var(--gold); } 100% { color: #ffd700; } }
-    .headline { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 16px; text-align: center; animation: fadeIn 1s ease-in; }
-    .subheadline { font-size: 1.2rem; color: var(--text-soft); margin-bottom: 32px; text-align: center; animation: fadeIn 1.5s ease-in; }
-    @keyframes fadeIn { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-    .visual-proof { text-align: center; margin-bottom: 32px; }
-    .icons { display: flex; justify-content: center; gap: 16px; margin-top: 16px; }
-    .icon { width: 48px; height: 48px; transition: transform 0.3s; }
-    .icon:hover { transform: scale(1.1); }
-    .used-by { font-size: 0.9rem; color: var(--text-soft); text-align: center; margin-top: 8px; }
-    .benefits { list-style: none; margin-bottom: 32px; }
-    .benefit { font-size: 1.1rem; margin-bottom: 12px; position: relative; padding-left: 28px; animation: fadeIn 2s ease-in; }
-    .benefit:before { content: "✓"; position: absolute; left: 0; color: var(--gold); }
-    .price-anchor { text-align: center; margin-bottom: 24px; }
-    .old-price { font-size: 1.6rem; color: var(--text-soft); text-decoration: line-through; }
-    .new-price { font-size: 2.8rem; color: var(--gold); font-weight: 700; margin: 8px 0; }
-    .urgency { font-size: 1rem; color: var(--accent); margin-bottom: 24px; }
-    .buy-button { display: block; padding: 16px; background: linear-gradient(135deg, var(--accent), #00aaff); color: #fff; text-align: center; border-radius: 999px; font-weight: 700; font-size: 1.2rem; text-decoration: none; box-shadow: 0 0 20px rgba(0, 200, 255, 0.6); margin-bottom: 8px; transition: transform 0.3s; animation: pulse 2s infinite; }
-    .buy-button:hover { transform: scale(1.05); }
-    .sub-button { font-size: 0.9rem; color: var(--danger); text-align: center; margin-bottom: 32px; animation: pulse 2s infinite; }
-    .final-urgency { text-align: center; margin-bottom: 24px; font-size: 1.1rem; color: var(--text-soft); }
-    .repeat-button { display: block; padding: 16px; background: linear-gradient(135deg, var(--gold), #ffcc80); color: #000; text-align: center; border-radius: 999px; font-weight: 700; font-size: 1.2rem; text-decoration: none; box-shadow: 0 0 20px rgba(247, 200, 106, 0.6); margin-top: 16px; transition: transform 0.3s; animation: pulse 2s infinite; }
-    .repeat-button:hover { transform: scale(1.05); }
-    .footer { text-align: center; font-size: 0.8rem; color: var(--text-soft); margin-top: 48px; }
-    .notification { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.9); color: #fff; padding: 14px 24px; border-radius: 12px; font-size: 14px; z-index: 1000; opacity: 0; transition: opacity .4s; border-left: 4px solid var(--accent); max-width: 90%; animation: slideUp 0.5s ease-out forwards; }
-    .notification.show { opacity: 1; }
-    @keyframes slideUp { 0% { transform: translateY(100%); } 100% { transform: translateY(0); } }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viral Luxury Videos 4K Pack</title>
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Arial', sans-serif; background-color: #121212; color: #ffffff; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; padding: 40px 20px; background-color: #000000; }
+        h1 { font-size: 32px; margin-bottom: 10px; color: #ffd700; }
+        h2 { font-size: 20px; color: #cccccc; margin-top: 40px; }
+        p { font-size: 16px; }
+        ul { list-style-type: none; padding: 0; }
+        li { margin: 10px 0; font-size: 16px; }
+        .carousel { display: flex; overflow-x: auto; gap: 10px; margin: 20px 0; animation: scroll 20s linear infinite; }
+        .carousel img { width: 200px; height: auto; border-radius: 8px; flex-shrink: 0; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-210px * 7)); } }
+        .cta-button { display: block; background-color: #ffd700; color: #000000; padding: 15px; font-size: 18px; text-decoration: none; border-radius: 5px; margin: 20px 0; text-align: center; transition: background-color 0.3s; }
+        .cta-button:hover { background-color: #e6c200; }
+        .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; background-color: #000000; padding: 10px; z-index: 1000; }
+        .notification { position: fixed; bottom: 60px; right: 20px; background-color: #333333; color: #ffffff; padding: 10px 20px; border-radius: 5px; display: none; z-index: 1000; }
+        footer { text-align: center; padding: 20px; background-color: #000000; font-size: 14px; color: #aaaaaa; }
+        @media (max-width: 600px) { h1 { font-size: 28px; } h2 { font-size: 18px; } p, li { font-size: 14px; } .carousel img { width: 150px; } }
+    </style>
 </head>
-<body onload="detectLanguage()">
-  <div class="cyber-bg">
-    <span style="top: 80%; left: 8%; animation-delay: 0s;"></span>
-    <span style="top: 60%; left: 22%; animation-delay: 3s;"></span>
-    <span style="top: 72%; left: 40%; animation-delay: 6s;"></span>
-    <span style="top: 85%; left: 58%; animation-delay: 1.5s;"></span>
-    <span style="top: 66%; left: 80%; animation-delay: 4.2s;"></span>
-    <span style="top: 40%; left: 12%; animation-delay: 7.3s;"></span>
-    <span style="top: 32%; left: 48%; animation-delay: 2.4s;"></span>
-    <span style="top: 18%; left: 76%; animation-delay: 5.1s;"></span>
-    <span style="top: 10%; left: 30%; animation-delay: 8.7s;"></span>
-    <span style="top: 5%; left: 55%; animation-delay: 10.2s;"></span>
-  </div>
-  <div class="page">
-    <div class="timer-section">
-      <div class="timer-above" id="timer_above">Oferta Relâmpago – Preço Aumenta em Breve</div>
-      <div class="timer" id="timer"></div>
+<body>
+    <header>
+        <div class="container">
+            <h1 data-i18n="headline">Faceless Luxury Videos That Grow Your Account While You Sleep</h1>
+            <a href="https://digitalist0728.gumroad.com/l/bqxhm" class="cta-button" data-i18n="cta">Get Instant Access – $1.99</a>
+        </div>
+    </header>
+
+    <section id="problem">
+        <div class="container">
+            <h2 data-i18n="problem-title">The Challenge</h2>
+            <p data-i18n="problem-text">You want to build a massive audience in luxury, motivation, and lifestyle. But creating content takes time. Showing your face feels risky. Growth seems slow without pro skills.</p>
+        </div>
+    </section>
+
+    <section id="solution">
+        <div class="container">
+            <h2 data-i18n="solution-title">The Simple Solution</h2>
+            <p data-i18n="solution-text">Viral Luxury Videos 4K Pack. Ready-to-post 4K videos. Copy, post on Reels or Shorts, watch your account grow. No editing. No face required. Works anywhere.</p>
+            <div class="carousel">
+                <img src="https://github.com/user-attachments/assets/15de3c5c-7d81-4c19-98dd-add5111257b2" alt="Preview 1">
+                <img src="https://github.com/user-attachments/assets/307d0280-b238-4f28-8205-41640ed9ff4a" alt="Preview 2">
+                <img src="https://github.com/user-attachments/assets/81148523-7e97-42dc-a921-7f60a1294b5f" alt="Preview 3">
+                <img src="https://github.com/user-attachments/assets/ee06909d-81be-4f34-9dc6-9385f7a15469" alt="Preview 4">
+                <img src="https://github.com/user-attachments/assets/c99f7427-ae73-40bb-8eab-d1de0bee9ab7" alt="Preview 5">
+                <img src="https://github.com/user-attachments/assets/2708cfb6-1e5f-4b98-8a57-ffee9c09fa56" alt="Preview 6">
+                <img src="https://github.com/user-attachments/assets/acc4865a-c47f-4b02-b8df-24d6efd005ce" alt="Preview 7">
+                <img src="https://github.com/user-attachments/assets/15de3c5c-7d81-4c19-98dd-add5111257b2" alt="Preview 1">
+                <img src="https://github.com/user-attachments/assets/307d0280-b238-4f28-8205-41640ed9ff4a" alt="Preview 2">
+                <img src="https://github.com/user-attachments/assets/81148523-7e97-42dc-a921-7f60a1294b5f" alt="Preview 3">
+                <img src="https://github.com/user-attachments/assets/ee06909d-81be-4f34-9dc6-9385f7a15469" alt="Preview 4">
+                <img src="https://github.com/user-attachments/assets/c99f7427-ae73-40bb-8eab-d1de0bee9ab7" alt="Preview 5">
+                <img src="https://github.com/user-attachments/assets/2708cfb6-1e5f-4b98-8a57-ffee9c09fa56" alt="Preview 6">
+                <img src="https://github.com/user-attachments/assets/acc4865a-c47f-4b02-b8df-24d6efd005ce" alt="Preview 7">
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits">
+        <div class="container">
+            <h2 data-i18n="benefits-title">What You Get</h2>
+            <ul>
+                <li data-i18n="benefit1">Premium 4K cinematic luxury videos</li>
+                <li data-i18n="benefit2">Optimized for Reels, Shorts, TikTok</li>
+                <li data-i18n="benefit3">Ideal for faceless accounts – total freedom</li>
+                <li data-i18n="benefit4">Save hours: no creation needed</li>
+                <li data-i18n="benefit5">Proven growth worldwide</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="social-proof">
+        <div class="container">
+            <h2 data-i18n="proof-title">Trusted Globally</h2>
+            <p data-i18n="proof-text">Used by creators in USA, Europe, Latin America. Real results. Instant monetization potential.</p>
+        </div>
+    </section>
+
+    <section id="offer">
+        <div class="container">
+            <h2 data-i18n="offer-title">Irresistible Offer</h2>
+            <p data-i18n="offer-text">Just $1.99. One-time payment. Instant download. No risk – start growing today. Limited access: Get it before demand rises.</p>
+            <p data-i18n="guarantee">Secure via Gumroad. No subscription. Digital delivery in seconds.</p>
+            <a href="https://digitalist0728.gumroad.com/l/bqxhm" class="cta-button" data-i18n="cta">Get Instant Access – $1.99</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p data-i18n="footer">Digital product for content creation. Faceless freedom worldwide.</p>
+        </div>
+    </footer>
+
+    <div class="sticky-cta">
+        <a href="https://digitalist0728.gumroad.com/l/bqxhm" class="cta-button" data-i18n="cta">Get Instant Access – $1.99</a>
     </div>
-    <h1 class="headline" id="headline">Transforme Vídeos Virais de Luxo em Renda</h1>
-    <p class="subheadline" id="subheadline">Sem Aparecer. Sem Experiência. Apenas Conteúdo Viral. Aproveite esta oportunidade única antes que expire e transforme sua presença online em uma máquina de dinheiro!</p>
 
-    <div class="visual-proof">
-      <p id="visual_proof">Vídeos luxuosos, cinematográficos, 4K, prontos para viralizar</p>
-      <div class="icons">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1024px-Instagram_logo_2016.svg.png" alt="Instagram" class="icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_(2019).png/1024px-Facebook_Logo_(2019).png" alt="Facebook" class="icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_(2017).svg/1024px-YouTube_full-color_icon_(2017).svg.png" alt="YouTube Shorts" class="icon">
-      </div>
-      <p id="used_by">Usado diariamente por criadores e marketers em todo o mundo</p>
-    </div>
+    <div class="notification" id="purchase-notification" data-i18n="notification">Someone just grabbed the pack!</div>
 
-    <ul class="benefits" id="benefits">
-      <li class="benefit">Vídeos virais de luxo em 4K prontos para uso</li>
-      <li class="benefit">Perfeito para conteúdo com IA e perfis sem rosto</li>
-      <li class="benefit">Economize horas de criação</li>
-      <li class="benefit">Funciona em todo o mundo</li>
-      <li class="benefit">Faça upload e monetize instantaneamente</li>
-    </ul>
+    <script>
+        const translations = {
+            en: {
+                headline: "Faceless Luxury Videos That Grow Your Account While You Sleep",
+                "problem-title": "The Challenge",
+                "problem-text": "You want to build a massive audience in luxury, motivation, and lifestyle. But creating content takes time. Showing your face feels risky. Growth seems slow without pro skills.",
+                "solution-title": "The Simple Solution",
+                "solution-text": "Viral Luxury Videos 4K Pack. Ready-to-post 4K videos. Copy, post on Reels or Shorts, watch your account grow. No editing. No face required. Works anywhere.",
+                "benefits-title": "What You Get",
+                benefit1: "Premium 4K cinematic luxury videos",
+                benefit2: "Optimized for Reels, Shorts, TikTok",
+                benefit3: "Ideal for faceless accounts – total freedom",
+                benefit4: "Save hours: no creation needed",
+                benefit5: "Proven growth worldwide",
+                "proof-title": "Trusted Globally",
+                "proof-text": "Used by creators in USA, Europe, Latin America. Real results. Instant monetization potential.",
+                "offer-title": "Irresistible Offer",
+                "offer-text": "Just $1.99. One-time payment. Instant download. No risk – start growing today. Limited access: Get it before demand rises.",
+                guarantee: "Secure via Gumroad. No subscription. Digital delivery in seconds.",
+                cta: "Get Instant Access – $1.99",
+                footer: "Digital product for content creation. Faceless freedom worldwide.",
+                notification: "Someone just grabbed the pack!"
+            },
+            es: {
+                headline: "Videos de Lujo Sin Rostro Que Hacen Crecer Tu Cuenta Mientras Duermes",
+                "problem-title": "El Desafío",
+                "problem-text": "Quieres construir una audiencia masiva en lujo, motivación y estilo de vida. Pero crear contenido toma tiempo. Mostrar tu rostro se siente riesgoso. El crecimiento parece lento sin habilidades pro.",
+                "solution-title": "La Solución Simple",
+                "solution-text": "Paquete Viral Luxury Videos 4K. Videos 4K listos para publicar. Copia, publica en Reels o Shorts, ve crecer tu cuenta. Sin edición. Sin rostro requerido. Funciona en cualquier lugar.",
+                "benefits-title": "Lo Que Obtienes",
+                benefit1: "Videos de lujo cinematográficos 4K premium",
+                benefit2: "Optimizados para Reels, Shorts, TikTok",
+                benefit3: "Ideal para cuentas sin rostro – libertad total",
+                benefit4: "Ahorra horas: no se necesita creación",
+                benefit5: "Crecimiento probado en todo el mundo",
+                "proof-title": "Confiado Globalmente",
+                "proof-text": "Usado por creadores en EE.UU., Europa, América Latina. Resultados reales. Potencial de monetización instantánea.",
+                "offer-title": "Oferta Irresistible",
+                "offer-text": "Solo $1.99. Pago único. Descarga instantánea. Sin riesgo – empieza a crecer hoy. Acceso limitado: Obténlo antes de que aumente la demanda.",
+                guarantee: "Seguro vía Gumroad. Sin suscripción. Entrega digital en segundos.",
+                cta: "Obtén Acceso Instantáneo – $1.99",
+                footer: "Producto digital para creación de contenido. Libertad sin rostro en todo el mundo.",
+                notification: "¡Alguien acaba de obtener el paquete!"
+            },
+            fr: {
+                headline: "Vidéos de Luxe Sans Visage Qui Font Croître Votre Compte Pendant Que Vous Dormez",
+                "problem-title": "Le Défi",
+                "problem-text": "Vous voulez construire une audience massive en luxe, motivation et style de vie. Mais créer du contenu prend du temps. Montrer votre visage semble risqué. La croissance semble lente sans compétences pro.",
+                "solution-title": "La Solution Simple",
+                "solution-text": "Pack Viral Luxury Videos 4K. Vidéos 4K prêtes à poster. Copiez, postez sur Reels ou Shorts, regardez votre compte grandir. Pas d'édition. Pas de visage requis. Fonctionne partout.",
+                "benefits-title": "Ce Que Vous Obtenez",
+                benefit1: "Vidéos de luxe cinématographiques 4K premium",
+                benefit2: "Optimisées pour Reels, Shorts, TikTok",
+                benefit3: "Idéal pour les comptes sans visage – liberté totale",
+                benefit4: "Économisez des heures : pas de création nécessaire",
+                benefit5: "Croissance prouvée dans le monde entier",
+                "proof-title": "Fiable Globalement",
+                "proof-text": "Utilisé par des créateurs aux USA, en Europe, en Amérique Latine. Résultats réels. Potentiel de monétisation instantanée.",
+                "offer-title": "Offre Irrésistible",
+                "offer-text": "Seulement 1,99 $. Paiement unique. Téléchargement instantané. Sans risque – commencez à grandir aujourd'hui. Accès limité : Obtenez-le avant que la demande augmente.",
+                guarantee: "Sécurisé via Gumroad. Pas d'abonnement. Livraison numérique en secondes.",
+                cta: "Obtenez un Accès Instantané – 1,99 $",
+                footer: "Produit numérique pour la création de contenu. Liberté sans visage dans le monde entier.",
+                notification: "Quelqu'un vient d'obtenir le pack !"
+            },
+            de: {
+                headline: "Gesichtslose Luxusvideos, Die Dein Konto Wachsen Lassen, Während Du Schläfst",
+                "problem-title": "Die Herausforderung",
+                "problem-text": "Du möchtest eine massive Audience in Luxus, Motivation und Lifestyle aufbauen. Aber Inhalte zu erstellen kostet Zeit. Dein Gesicht zu zeigen fühlt sich riskant an. Wachstum scheint langsam ohne Profi-Fähigkeiten.",
+                "solution-title": "Die Einfache Lösung",
+                "solution-text": "Viral Luxury Videos 4K Pack. Fertige 4K-Videos zum Posten. Kopieren, auf Reels oder Shorts posten, dein Konto wachsen sehen. Kein Bearbeiten. Kein Gesicht erforderlich. Funktioniert überall.",
+                "benefits-title": "Was Du Bekommst",
+                benefit1: "Premium 4K kinematische Luxusvideos",
+                benefit2: "Optimiert für Reels, Shorts, TikTok",
+                benefit3: "Ideal für gesichtslose Accounts – totale Freiheit",
+                benefit4: "Sparen Stunden: Keine Erstellung nötig",
+                benefit5: "Bewährtes Wachstum weltweit",
+                "proof-title": "Weltweit Vertraut",
+                "proof-text": "Verwendet von Creatorn in USA, Europa, Lateinamerika. Echte Ergebnisse. Sofortiges Monetarisierungspotenzial.",
+                "offer-title": "Unwiderstehliches Angebot",
+                "offer-text": "Nur 1,99 $. Einmalzahlung. Sofortiger Download. Kein Risiko – starte heute mit Wachstum. Begrenzter Zugang: Hol es dir, bevor die Nachfrage steigt.",
+                guarantee: "Sicher über Gumroad. Kein Abonnement. Digitale Lieferung in Sekunden.",
+                cta: "Sofortigen Zugang Erhalten – 1,99 $",
+                footer: "Digitales Produkt für Inhaltscreation. Gesichtslose Freiheit weltweit.",
+                notification: "Jemand hat gerade das Pack geholt!"
+            }
+        };
 
-    <div class="price-anchor">
-      <div class="old-price" id="old_price">Era $9,90</div>
-      <div class="new-price" id="new_price">Hoje: $1,99</div>
-      <div class="urgency" id="urgency">Pagamento único • Acesso instantâneo</div>
-    </div>
+        const userLang = navigator.language.substring(0, 2);
+        const lang = translations[userLang] ? userLang : 'en';
 
-    <a href="https://digitalist0728.gumroad.com/l/bqxhm" class="buy-button" id="button">Obter Acesso Instantâneo • Comece Hoje por $1,99 – Urgente, Antes que Acabe!</a>
-    <p class="sub-button" id="sub_button"> •<span style="color:#ff0000; font-weight:bold;"></span></p>
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang][key]) {
+                el.innerHTML = translations[lang][key];
+            }
+        });
 
-    <p class="final-urgency" id="final_urgency1">Este preço não ficará em $0,99/p>
-    <p class="final-urgency" id="final_urgency2">Quando o timer acabar, o preço volta para $6,99</p>
-    <a href" class="repeat-button" id="repeat_button">Obter Acesso Instantâneo • Comece Hoje por $0,99 – <span style="color:#ff0000; font-weight:bold;">OFERTA ESGOTADA</span>!</a>
-
-    <div class="footer">
-      <p id="footer1">Produto digital • Entrega instantânea</p>
-      <p id="footer2">Para fins educacionais e criação de conteúdo</p>
-    </div>
-  </div>
-
-  <div class="notification" id="notification"></div>
-
-  <script>
-    // Translations
-    const translations = {
-      pt: {
-        timer_above: 'Oferta Relâmpago – Preço Aumenta em Breve',
-        headline: 'Transforme Vídeos Virais de Luxo em Renda',
-        subheadline: 'Sem Aparecer. Sem Experiência. Apenas Conteúdo Viral. Aproveite esta oportunidade única antes que expire e transforme sua presença online em uma máquina de dinheiro!',
-        visual_proof: 'Vídeos luxuosos, cinematográficos, 4K, prontos para viralizar',
-        used_by: 'Usado diariamente por criadores e marketers em todo o mundo',
-        benefits: [
-          'Vídeos virais de luxo em 4K prontos para uso',
-          'Perfeito para conteúdo com IA e perfis sem rosto',
-          'Economize horas de criação',
-          'Funciona em todo o mundo',
-          'Faça upload e monetize instantaneamente'
-        ],
-        old_price: 'Era $9,90',
-        new_price: 'Hoje: $1,99',
-        urgency: 'Pagamento único • Acesso instantâneo',
-        button: 'Obter Acesso Instantâneo • Comece Hoje por $1,99 – Urgente, Antes que Acabe!',
-        sub_button: 'Vagas limitadas • Oferta terminando em breve',
-        final_urgency1: 'Este preço não ficará em $1,99',
-        final_urgency2: 'Quando o timer acabar, o preço volta para $9,90',
-        footer1: 'Produto digital • Entrega instantânea',
-        footer2: 'Para fins educacionais e criação de conteúdo'
-      },
-      en: {
-        timer_above: 'Flash Offer – Price Increases Soon',
-        headline: 'Turn Viral Luxury Videos Into Income',
-        subheadline: 'No Face. No Experience. Just Viral Content. Seize this unique opportunity before it expires and transform your online presence into a money machine!',
-        visual_proof: 'Luxurious, cinematic, 4K videos ready to go viral',
-        used_by: 'Used daily by creators and marketers worldwide',
-        benefits: [
-          'Viral-ready luxury videos in 4K',
-          'Perfect for AI content & faceless profiles',
-          'Save hours of creation',
-          'Works worldwide',
-          'Upload and monetize instantly'
-        ],
-        old_price: 'Was $19.90',
-        new_price: 'Today: $9.90',
-        urgency: 'One-time payment • Instant access',
-        button: 'Get Instant Access • Start Today for $9.90 – Urgent, Before It's Gone!',
-        sub_button: 'Limited spots • Offer ending soon',
-        final_urgency1: 'This price will not stay at $9.90',
-        final_urgency2: 'Once the timer ends, the price goes back to $19.90',
-        footer1: 'Digital product • Instant delivery',
-        footer2: 'For educational and content creation purposes'
-      },
-      es: {
-        timer_above: 'Oferta Relámpago – El Precio Aumenta Pronto',
-        headline: 'Transforma Videos Virales de Lujo en Ingresos',
-        subheadline: 'Sin Mostrar la Cara. Sin Experiencia. Solo Contenido Viral. ¡Aprovecha esta oportunidad única antes de que expire y transforma tu presencia online en una máquina de dinero!',
-        visual_proof: 'Videos lujosos, cinematográficos, 4K, listos para viralizarse',
-        used_by: 'Usado diariamente por creadores y marketers en todo el mundo',
-        benefits: [
-          'Videos virales de lujo en 4K listos para usar',
-          'Perfecto para contenido con IA y perfiles sin rostro',
-          'Ahorra horas de creación',
-          'Funciona en todo el mundo',
-          'Sube y monetiza instantáneamente'
-        ],
-        old_price: 'Era €19,90',
-        new_price: 'Hoy: €9,90',
-        urgency: 'Pago único • Acceso instantáneo',
-        button: 'Obtener Acceso Instantáneo • Comienza Hoy por €9,90 – ¡Urgente, Antes de que Termine!',
-        sub_button: 'Plazas limitadas • Oferta terminando pronto',
-        final_urgency1: 'Este precio no se quedará en €9,90',
-        final_urgency2: 'Cuando el temporizador termine, el precio vuelve a €19,90',
-        footer1: 'Producto digital • Entrega instantánea',
-        footer2: 'Para fines educativos y creación de contenido'
-      }
-    };
-
-    // Detect language
-    function detectLanguage() {
-      const langCode = navigator.language.split('-')[0];
-      const lang = translations[langCode] ? langCode : 'en';
-      const trans = translations[lang];
-      document.getElementById('timer_above').innerText = trans.timer_above;
-      document.getElementById('headline').innerText = trans.headline;
-      document.getElementById('subheadline').innerText = trans.subheadline;
-      document.getElementById('visual_proof').innerText = trans.visual_proof;
-      document.getElementById('used_by').innerText = trans.used_by;
-      const benefitLis = document.querySelectorAll('.benefit');
-      benefitLis.forEach((li, i) => li.innerText = trans.benefits[i]);
-      document.getElementById('old_price').innerText = trans.old_price;
-      document.getElementById('new_price').innerText = trans.new_price;
-      document.getElementById('urgency').innerText = trans.urgency;
-      document.getElementById('button').innerText = trans.button;
-      document.getElementById('sub_button').innerText = trans.sub_button;
-      document.getElementById('final_urgency1').innerText = trans.final_urgency1;
-      document.getElementById('final_urgency2').innerText = trans.final_urgency2;
-      document.getElementById('repeat_button').innerText = trans.button;
-      document.getElementById('footer1').innerText = trans.footer1;
-      document.getElementById('footer2').innerText = trans.footer2;
-    }
-
-    // Timer
-    const saved = localStorage.getItem('offerTimer');
-    let endTime = saved ? parseInt(saved) : Date.now() + (5 + Math.floor(Math.random() * 11)) * 60000; // 5-15 min for high urgency
-    if (!saved) localStorage.setItem('offerTimer', endTime);
-    const timerInterval = setInterval(() => {
-      const diff = endTime - Date.now();
-      if (diff <= 0) {
-        clearInterval(timerInterval);
-        document.getElementById('timer').innerText = '00:00';
-        return;
-      }
-      const m = Math.floor(diff / 60000).toString().padStart(2, '0');
-      const s = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
-      document.getElementById('timer').innerText = m + ':' + s;
-    }, 1000);
-
-    // Notifications
-    const names = ['Michael', 'Lucas', 'Sofia', 'Juan', 'Emma', 'Pedro', 'Ana', 'Carlos', 'Julia', 'David'];
-    const countries = ['USA', 'Brazil', 'Spain', 'Portugal', 'Canada'];
-    let usedNames = [];
-    function showNotification() {
-      if (usedNames.length === names.length) usedNames = [];
-      let name;
-      do { name = names[Math.floor(Math.random() * names.length)]; } while (usedNames.includes(name));
-      usedNames.push(name);
-      const country = countries[Math.floor(Math.random() * countries.length)];
-      const notif = document.getElementById('notification');
-      notif.innerHTML = `${name} from ${country} just purchased!`;
-      notif.classList.add('show');
-      setTimeout(() => { notif.classList.remove('show'); }, 4000);
-    }
-    setTimeout(() => {
-      showNotification();
-      setInterval(showNotification, 15000 + Math.random() * 15000);
-    }, 5000);
-  </script>
+        function showNotification() {
+            const notification = document.getElementById('purchase-notification');
+            notification.style.display = 'block';
+            setTimeout(() => { notification.style.display = 'none'; }, 3000);
+        }
+        setInterval(showNotification, Math.random() * 10000 + 20000);
+    </script>
 </body>
 </html>
-<!-- SOCIAL PROOF CAROUSEL -->
-<style>
-  .social-proof-carousel {
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-    position: relative;
-    margin: 40px auto;
-    background: #000;
-    padding: 20px 0;
-  }
-
-  .carousel-track {
-    display: flex;
-    gap: 16px;
-    animation: scroll 40s linear infinite;
-  }
-
-  .carousel-track img {
-    height: 320px;
-    border-radius: 12px;
-    object-fit: cover;
-    box-shadow: 0 0 20px rgba(0,0,0,0.6);
-  }
-
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  /* Mobile */
-  @media (max-width: 768px) {
-    .carousel-track img {
-      height: 240px;
-    }
-  }
-</style>
-
-<div class="social-proof-carousel">
-  <div class="carousel-track">
-    <!-- IMAGES (duplicated for smooth loop) -->
-    <img src="https://github.com/user-attachments/assets/15de3c5c-7d81-4c19-98dd-add5111257b2">
-    <img src="https://github.com/user-attachments/assets/307d0280-b238-4f28-8205-41640ed9ff4a">
-    <img src="https://github.com/user-attachments/assets/81148523-7e97-42dc-a921-7f60a1294b5f">
-    <img src="https://github.com/user-attachments/assets/ee06909d-81be-4f34-9dc6-9385f7a15469">
-    <img src="https://github.com/user-attachments/assets/c99f7427-ae73-40bb-8eab-d1de0bee9ab7">
-    <img src="https://github.com/user-attachments/assets/2708cfb6-1e5f-4b98-8a57-ffee9c09fa56">
-    <img src="https://github.com/user-attachments/assets/acc4865a-c47f-4b02-b8df-24d6efd005ce">
-
-    <!-- DUPLICATE FOR LOOP -->
-    <img src="https://github.com/user-attachments/assets/15de3c5c-7d81-4c19-98dd-add5111257b2">
-    <img src="https://github.com/user-attachments/assets/307d0280-b238-4f28-8205-41640ed9ff4a">
-    <img src="https://github.com/user-attachments/assets/81148523-7e97-42dc-a921-7f60a1294b5f">
-    <img src="https://github.com/user-attachments/assets/ee06909d-81be-4f34-9dc6-9385f7a15469">
-    <img src="https://github.com/user-attachments/assets/c99f7427-ae73-40bb-8eab-d1de0bee9ab7">
-    <img src="https://github.com/user-attachments/assets/2708cfb6-1e5f-4b98-8a57-ffee9c09fa56">
-    <img src="https://github.com/user-attachments/assets/acc4865a-c47f-4b02-b8df-24d6efd005ce">
-  </div>
-</div>
